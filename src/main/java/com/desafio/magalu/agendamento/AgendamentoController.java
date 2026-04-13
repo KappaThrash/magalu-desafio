@@ -19,8 +19,8 @@ public class AgendamentoController {
 
     @PostMapping
     public ResponseEntity<?> postAgendamento(@RequestBody @Valid agendamentoDTO DTO){
-        service.validateDTO(DTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+
+        return service.validateDTO(DTO);
     }
 
     @GetMapping

@@ -27,6 +27,8 @@ public class AgendamentoService {
         SavingEntity.setMessage(dto.getMessage());
         SavingEntity.setStatus(dto.getStatus());
 
+        repository.save(SavingEntity);
+
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
