@@ -1,6 +1,7 @@
 package com.desafio.magalu.agendamento;
 
 import com.desafio.magalu.agendamento.models.agendamentoDTO;
+import com.desafio.magalu.agendamento.service.AgendamentoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/agendamento")
 public class AgendamentoController {
+
+    AgendamentoService service;
+
+    AgendamentoController
 
     @PostMapping
     public ResponseEntity<?> postAgendamento(@RequestBody @Valid agendamentoDTO DTO){

@@ -1,5 +1,6 @@
 package com.desafio.magalu.agendamento.models;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.Date;
@@ -9,8 +10,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class agendamentoDTO {
+    @NonNull
     private Date data;
-    private String Reciever;
-    private String Message;
+    @NotBlank
+    private String receiver;
+    @NotBlank
+    private String message;
+    @NonNull
     private statusEnum status;
 }
