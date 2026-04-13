@@ -23,6 +23,9 @@ public class AgendamentoService {
     public ResponseEntity<?> validateDTO(agendamentoDTO dto){
 
         AgendamentoEntity SavingEntity = new AgendamentoEntity();
+        SavingEntity.setReceiver(dto.getReceiver());
+        SavingEntity.setMessage(dto.getMessage());
+        SavingEntity.setStatus(dto.getStatus());
 
 
         return ResponseEntity.status(HttpStatus.OK).build();

@@ -13,11 +13,13 @@ public class AgendamentoController {
 
     AgendamentoService service;
 
-    AgendamentoController
+    public AgendamentoController( AgendamentoService service){
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<?> postAgendamento(@RequestBody @Valid agendamentoDTO DTO){
-        //AgendamentoService
+        service.validateDTO(DTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
