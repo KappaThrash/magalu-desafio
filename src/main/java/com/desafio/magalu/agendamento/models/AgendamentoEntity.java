@@ -3,6 +3,7 @@ package com.desafio.magalu.agendamento.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Getter
@@ -16,6 +17,7 @@ public class AgendamentoEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    private OffsetDateTime date;
     private String receiver;
     private String message;
 

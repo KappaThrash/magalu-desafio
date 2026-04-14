@@ -26,6 +26,7 @@ public class AgendamentoService {
 
         var SavingEntity = new AgendamentoEntity();
         SavingEntity.setReceiver(dto.getReceiver());
+        SavingEntity.setDate(dto.getDate());
         SavingEntity.setMessage(dto.getMessage());
         SavingEntity.setStatus(dto.getStatus());
 

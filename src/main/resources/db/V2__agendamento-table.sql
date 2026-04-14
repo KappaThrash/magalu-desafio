@@ -1,0 +1,7 @@
+CREATE TABLE agendamento(
+    id UUID PRIMARY KEY,
+    date TIMESTAMP WITH TIME ZONE NOT NULL,
+    receiver VARCHAR(100) NOT NULL ,
+    message VARCHAR(600) NOT NULL,
+    status VARCHAR(20) NOT NULL
+);

@@ -3,6 +3,7 @@ package com.desafio.magalu.agendamento.models;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.OffsetDateTime;
 import java.util.Date;
 
 @Getter
@@ -11,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class agendamentoDTO {
     @NonNull
-    private Date data;
+    private OffsetDateTime date;
     @NotBlank
     private String receiver;
     @NotBlank
