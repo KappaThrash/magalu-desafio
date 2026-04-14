@@ -1,4 +1,4 @@
-package com.desafio.magalu.agendamento;
+package com.desafio.magalu.agendamento.controller;
 
 import com.desafio.magalu.agendamento.models.agendamentoDTO;
 import com.desafio.magalu.agendamento.service.AgendamentoService;
@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/agendamento")
@@ -20,17 +22,16 @@ public class AgendamentoController {
     @PostMapping
     public ResponseEntity<?> postAgendamento(@RequestBody @Valid agendamentoDTO DTO){
 
-        return service.validateDTO(DTO);
+        return service.saveAgendamento(DTO);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAgendamento(@RequestParam(required = true) int id){
-        //AgendamentoService
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<?> getAgendamento(@RequestParam(required = true) UUID id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getAgendamento(id));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteAgendamento(@RequestParam(required = true) int id){
+    public ResponseEntity<?> deleteAgendamento(@RequestParam(required = true) UUID id){
         //AgendamentoService
         return ResponseEntity.status(HttpStatus.OK).build();
     }

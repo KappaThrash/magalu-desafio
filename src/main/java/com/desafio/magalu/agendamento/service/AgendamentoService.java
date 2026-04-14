@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 @NoArgsConstructor
 @Service
@@ -20,15 +22,24 @@ public class AgendamentoService {
         this.repository = repository;
     }
 
-    public ResponseEntity<?> validateDTO(agendamentoDTO dto){
+    public ResponseEntity<?> saveAgendamento(agendamentoDTO dto){
 
-        AgendamentoEntity SavingEntity = new AgendamentoEntity();
+        var SavingEntity = new AgendamentoEntity();
         SavingEntity.setReceiver(dto.getReceiver());
         SavingEntity.setMessage(dto.getMessage());
         SavingEntity.setStatus(dto.getStatus());
 
-        repository.save(SavingEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(SavingEntity));
+    }
 
+    public ResponseEntity<?> getAgendamento (UUID id){
+
+        return ResponseEntity.status(HttpStatus.OK).body(repository.findById(id));
+    }
+
+    public ResponseEntity<?> deleteAgendamento (UUID id){
+
+        repository.deleteById(id);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
