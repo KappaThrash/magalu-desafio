@@ -25,13 +25,13 @@ public class AgendamentoController {
         return service.saveAgendamento(DTO);
     }
 
-    @GetMapping
-    public ResponseEntity<?> getAgendamento(@RequestParam(required = true) UUID id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAgendamento(@PathVariable UUID id){
         return ResponseEntity.status(HttpStatus.OK).body(service.getAgendamento(id));
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteAgendamento(@RequestParam(required = true) UUID id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAgendamento(@PathVariable UUID id){
         //AgendamentoService
         return ResponseEntity.status(HttpStatus.OK).build();
     }
