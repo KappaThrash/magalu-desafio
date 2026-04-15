@@ -27,7 +27,7 @@ public class AgendamentoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAgendamento(@PathVariable UUID id){
-        return ResponseEntity.status(HttpStatus.OK).body(service.getAgendamento(id));
+        return service.getAgendamento(id);
     }
 
     @DeleteMapping("/{id}")
