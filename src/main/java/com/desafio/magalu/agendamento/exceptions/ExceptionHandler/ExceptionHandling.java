@@ -3,6 +3,7 @@ package com.desafio.magalu.agendamento.exceptions.ExceptionHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -17,7 +18,19 @@ public class ExceptionHandling {
         var response = new ErrorResponse(
                 OffsetDateTime.now(),
                 HttpStatus.UNPROCESSABLE_CONTENT.value(),
-                ex.toString(),
+               "IllegalArgumentException",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_CONTENT).body(response);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex, HttpServletRequest request){
+        var response = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.UNPROCESSABLE_CONTENT.value(),
+                "HttpMessageNotReadableException",
                 ex.getMessage(),
                 request.getRequestURI()
         );

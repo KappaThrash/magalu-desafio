@@ -32,7 +32,6 @@ public class AgendamentoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAgendamento(@PathVariable UUID id){
-        //AgendamentoService
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return service.deleteAgendamento(id);
     }
 }
