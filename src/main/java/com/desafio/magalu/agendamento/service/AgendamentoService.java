@@ -1,6 +1,7 @@
 package com.desafio.magalu.agendamento.service;
 
 import com.desafio.magalu.agendamento.models.AgendamentoEntity;
+import com.desafio.magalu.agendamento.models.StatusDTO;
 import com.desafio.magalu.agendamento.models.agendamentoDTO;
 import com.desafio.magalu.agendamento.repository.AgendamentoRepository;
 import org.springframework.http.HttpStatus;
@@ -48,5 +49,17 @@ public class AgendamentoService {
     public ResponseEntity<?> deleteAgendamento (UUID id){
         repository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    public ResponseEntity<?> patchAgendamento (UUID id, StatusDTO dto){
+
+        return repository.findById(id)
+                .map(entity -> {
+                    entity.setStatus(dto.getStatus());
+                    repository.save(entity);
+                    return ResponseEntity.ok().body(entity);
+                })
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+        );
     }
 }

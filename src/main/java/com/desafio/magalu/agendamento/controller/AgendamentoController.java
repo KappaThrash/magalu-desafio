@@ -1,5 +1,6 @@
 package com.desafio.magalu.agendamento.controller;
 
+import com.desafio.magalu.agendamento.models.StatusDTO;
 import com.desafio.magalu.agendamento.models.agendamentoDTO;
 import com.desafio.magalu.agendamento.service.AgendamentoService;
 import jakarta.validation.Valid;
@@ -34,4 +35,10 @@ public class AgendamentoController {
     public ResponseEntity<?> deleteAgendamento(@PathVariable UUID id){
         return service.deleteAgendamento(id);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> patchAgendamento(@PathVariable UUID id, @RequestBody @Valid StatusDTO dto){
+        return service.patchAgendamento(id, dto);
+    }
+
 }

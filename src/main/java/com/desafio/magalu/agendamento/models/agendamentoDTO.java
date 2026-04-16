@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.OffsetDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
