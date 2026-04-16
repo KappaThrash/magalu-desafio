@@ -58,3 +58,29 @@ Os campos no JSON acima significam o seguinte:
   
 - `404 NOT FOUND` 
   - Agendamento não encontrado, possivel ID errado.
+
+### `PATCH /agendamento/{id}` (UUID) - Atualizar status de um Agendamento
+
+#### Envio:
+
+```json
+{
+  "status": "CANCELED"
+}
+```
+
+#### Retorno:
+```json
+{
+  "date": "2026-04-14T20:22:00Z",
+  "receiver": "joao.silva@example.com",
+  "message": "Reunião marcada para discutir o projeto.",
+  "status": "CANCELED"
+}
+```
+
+- `200 OK`
+  - Agendamento encontrado e status atualizado.
+  
+- `404 NOT FOUND` 
+  - Agendamento não encontrado, possivel ID errado.
