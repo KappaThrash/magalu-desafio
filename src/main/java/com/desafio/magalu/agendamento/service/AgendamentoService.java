@@ -45,6 +45,10 @@ public class AgendamentoService {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
+    public ResponseEntity<?> getAgendamentoByReceiver(String receiver) {
+        return ResponseEntity.status(HttpStatus.OK).body(repository.findByReceiver(receiver));
+    }
+
 
     public ResponseEntity<?> deleteAgendamento (UUID id){
         repository.deleteById(id);

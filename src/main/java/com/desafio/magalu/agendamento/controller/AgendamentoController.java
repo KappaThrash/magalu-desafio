@@ -31,6 +31,11 @@ public class AgendamentoController {
         return service.getAgendamento(id);
     }
 
+    @GetMapping()
+    public ResponseEntity<?> getAgendamentoReceiver(@RequestParam String receiver){
+        return service.getAgendamentoByReceiver(receiver);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAgendamento(@PathVariable UUID id){
         return service.deleteAgendamento(id);
