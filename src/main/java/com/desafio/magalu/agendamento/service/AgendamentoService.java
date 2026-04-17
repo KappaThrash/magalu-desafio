@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -46,9 +47,11 @@ public class AgendamentoService {
     }
 
     public ResponseEntity<?> getAgendamentoByReceiver(String receiver) {
-        return ResponseEntity.status(HttpStatus.OK).body(repository.findByReceiver(receiver));
+        List<AgendamentoEntity> agendamentos = repository.findByReceiver(receiver);
+        if(!agendamentos.isEmpty())
+            return ResponseEntity.status(HttpStatus.OK).body(agendamentos);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
-
 
     public ResponseEntity<?> deleteAgendamento (UUID id){
         repository.deleteById(id);

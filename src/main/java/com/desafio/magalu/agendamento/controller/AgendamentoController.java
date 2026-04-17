@@ -31,7 +31,7 @@ public class AgendamentoController {
         return service.getAgendamento(id);
     }
 
-    @GetMapping()
+    @GetMapping("/")
     public ResponseEntity<?> getAgendamentoReceiver(@RequestParam String receiver){
         return service.getAgendamentoByReceiver(receiver);
     }
