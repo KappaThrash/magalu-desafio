@@ -33,7 +33,7 @@ Os campos no JSON acima significam o seguinte:
 
 ### `GET /agendamento/{id}` (UUID) - Checkar status de Agendamentos por ID
 
-### `GET /agendamento/?receiver={receiver}` (UUID) - Retorna todos agendamentos para tal "receiver"
+### `GET /agendamento/?receiver={receiver}` - Retorna todos agendamentos para tal "receiver"
 
 #### Retorno:
 ```json
