@@ -31,7 +31,9 @@ Os campos no JSON acima significam o seguinte:
 - `422 Unprocessable Entity` 
   - Agendamento não foi aceito, formatação da data errada, um dos campos do `JSON Null` ou em `Branco(Blank)`, status diferente dos aceitos.
 
-### `GET /agendamento/{id}` (UUID) - Checkar status de Agendamentos
+### `GET /agendamento/{id}` (UUID) - Checkar status de Agendamentos por ID
+
+### `GET /agendamento/?receiver={receiver}` (UUID) - Retorna todos agendamentos para tal "receiver"
 
 #### Retorno:
 ```json
