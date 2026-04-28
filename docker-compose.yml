@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: magalu_postgres
+    environment:
+      POSTGRES_DB: magalu
+      POSTGRES_USER: magalu_user
+      POSTGRES_PASSWORD: magalu
+      PG_DATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - magalu-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d picpay"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  magalu-network:
+    driver: bridge
