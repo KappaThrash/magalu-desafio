@@ -9,7 +9,7 @@ import java.time.OffsetDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class agendamentoDTO {
+public class AgendamentoDTO {
     @NonNull
     private OffsetDateTime date;
     @NotBlank

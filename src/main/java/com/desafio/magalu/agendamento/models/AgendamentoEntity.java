@@ -24,4 +24,10 @@ public class AgendamentoEntity {
     @Enumerated(EnumType.STRING)
     private statusEnum status;
 
+    public AgendamentoEntity(AgendamentoDTO dto){
+        this.date = dto.getDate();
+        this.receiver = dto.getReceiver();
+        this.message = dto.getMessage();
+    }
+
 }
