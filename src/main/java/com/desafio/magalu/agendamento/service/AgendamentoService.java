@@ -23,27 +23,14 @@ public class AgendamentoService {
 
     public ResponseEntity<?> saveAgendamento(AgendamentoDTO dto){
 
-        var SavingEntity = new AgendamentoEntity();
-        SavingEntity.setReceiver(dto.getReceiver());
-        SavingEntity.setDate(dto.getDate());
-        SavingEntity.setMessage(dto.getMessage());
-        SavingEntity.setStatus(dto.getStatus());
+        var SavingEntity = new AgendamentoEntity(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(SavingEntity));
     }
 
     public ResponseEntity<?> getAgendamento(UUID id) {
         return repository.findById(id)
-                .map(agendamentoEntity -> {
-                    var dto = new AgendamentoDTO(
-                            agendamentoEntity.getDate(),
-                            agendamentoEntity.getReceiver(),
-                            agendamentoEntity.getMessage(),
-                            agendamentoEntity.getStatus()
-                    );
-                    return ResponseEntity.status(HttpStatus.OK).body(dto);
-                })
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+                .orElseThrow(() -> new Exception(""));
     }
 
     public ResponseEntity<?> getAgendamentoByReceiver(String receiver) {
