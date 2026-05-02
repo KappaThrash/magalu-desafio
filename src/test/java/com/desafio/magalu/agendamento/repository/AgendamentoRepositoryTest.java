@@ -13,9 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @ActiveProfiles("test")
@@ -28,19 +25,25 @@ class AgendamentoRepositoryTest {
     EntityManager entityManager;
 
     @Test
-    @DisplayName("")
+    @DisplayName("Deve encontrar agendamentos pelo status")
     void findByStatusSucess() {
         AgendamentoDTO data = new AgendamentoDTO(OffsetDateTime.now(),"danielkuhin@gmail.com", "teste123~~´´~~]]", statusEnum.CANCELED);
         this.createAgendamento(data);
 
-        List<AgendamentoEntity> foundAgendamento = agendamentoRepository.findByStatus(data.getStatus());
+        List<AgendamentoEntity> result = agendamentoRepository.findByStatus(data.getStatus());
 
-        assertThat(foundAgendamento.isEmpty()).isFalse();
+        assertThat(result).isNotEmpty();
     }
 
-    //@Test
-    //void findByReceiver() {
-    //}
+    @Test
+    void findByReceiver() {
+        AgendamentoDTO data = new AgendamentoDTO(OffsetDateTime.now(),"danielkhin@gmail.com", "teste123~~´´~~]]", statusEnum.CANCELED);
+        this.createAgendamento(data);
+
+        List<AgendamentoEntity> result = agendamentoRepository.findByReceiver(data.getReceiver());
+
+        assertThat(result).isNotEmpty();
+    }
 
 //    @Test
 //    void findByDateBefore() {
@@ -49,7 +52,6 @@ class AgendamentoRepositoryTest {
     private AgendamentoEntity createAgendamento(AgendamentoDTO data){
         AgendamentoEntity newEnt = new AgendamentoEntity(data);
         this.entityManager.persist(newEnt);
-
         return newEnt;
     }
 }

@@ -9,6 +9,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Agendamento")
 public class AgendamentoEntity {
@@ -28,6 +29,7 @@ public class AgendamentoEntity {
         this.date = dto.getDate();
         this.receiver = dto.getReceiver();
         this.message = dto.getMessage();
+        this.status = dto.getStatus();
     }
 
 }
