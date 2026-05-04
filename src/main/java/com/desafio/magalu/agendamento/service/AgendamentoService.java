@@ -1,5 +1,6 @@
 package com.desafio.magalu.agendamento.service;
 
+import com.desafio.magalu.agendamento.exceptions.ExceptionHandler.AgendamentoNotFound;
 import com.desafio.magalu.agendamento.models.AgendamentoEntity;
 import com.desafio.magalu.agendamento.models.StatusDTO;
 import com.desafio.magalu.agendamento.models.AgendamentoDTO;
@@ -29,14 +30,17 @@ public class AgendamentoService {
     }
 
     public ResponseEntity<?> getAgendamento(UUID id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new Exception(""));
+        var agendamentoEntity = repository.findById(id)
+                .orElseThrow(() -> new AgendamentoNotFound("Agendamento não encontrado"));
+
+        return ResponseEntity.status(HttpStatus.OK).body(agendamentoEntity);
     }
 
     public ResponseEntity<?> getAgendamentoByReceiver(String receiver) {
         List<AgendamentoEntity> agendamentos = repository.findByReceiver(receiver);
         if(!agendamentos.isEmpty())
             return ResponseEntity.status(HttpStatus.OK).body(agendamentos);
+
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 

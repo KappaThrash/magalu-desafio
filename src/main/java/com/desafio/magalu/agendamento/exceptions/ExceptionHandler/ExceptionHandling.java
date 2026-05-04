@@ -36,4 +36,15 @@ public class ExceptionHandling {
         );
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_CONTENT).body(response);
     }
+    @ExceptionHandler(AgendamentoNotFound.class)
+    public ResponseEntity<?> handleAgendamentoNotFound(AgendamentoNotFound ex, HttpServletRequest request){
+        var response = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "AgendamentoNotFound",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
 }

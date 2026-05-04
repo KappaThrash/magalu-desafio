@@ -36,6 +36,7 @@ class AgendamentoRepositoryTest {
     }
 
     @Test
+    @DisplayName("Deve encontrar agendamentos pelo receiver")
     void findByReceiver() {
         AgendamentoDTO data = new AgendamentoDTO(OffsetDateTime.now(),"danielkhin@gmail.com", "teste123~~´´~~]]", statusEnum.CANCELED);
         this.createAgendamento(data);
